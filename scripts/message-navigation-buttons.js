@@ -24,7 +24,7 @@
   let chatPageObserver = null;
   // 检查是否为聊天页面
   function isChatPage() {
-    return document.querySelectorAll('.MessageFooter').length > 0;
+    return document.querySelectorAll('.message-header').length > 0;
   }
 
   // 显示或隐藏导航按钮
@@ -145,7 +145,7 @@
 
   // 获取所有消息（通过MessageFooter来定位）
   function getAllMessages() {
-    const messageFooters = document.querySelectorAll('.MessageFooter');
+    const messageFooters = document.querySelectorAll('.message-header');
     const messages = [];
 
     // 为每个MessageFooter获取位置信息
@@ -193,7 +193,7 @@
 
     messages[index].element.scrollIntoView({
       behavior: 'smooth',
-      block: 'center'
+      block: 'start'
     });
   }
 
@@ -237,8 +237,8 @@
         if (mutation.addedNodes.length) {
           for (const node of mutation.addedNodes) {
             if (node.nodeType === 1) { // 元素节点
-              if (node.classList && node.classList.contains('MessageFooter') ||
-                  node.querySelector && node.querySelector('.MessageFooter')) {
+              if (node.classList && node.classList.contains('message-header') ||
+                  node.querySelector && node.querySelector('.message-header')) {
                 return true;
               }
             }
@@ -249,8 +249,8 @@
         if (mutation.removedNodes.length) {
           for (const node of mutation.removedNodes) {
             if (node.nodeType === 1) { // 元素节点
-              if (node.classList && node.classList.contains('MessageFooter') ||
-                  node.querySelector && node.querySelector('.MessageFooter')) {
+              if (node.classList && node.classList.contains('message-header') ||
+                  node.querySelector && node.querySelector('.message-header')) {
                 return true;
               }
             }
