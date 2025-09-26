@@ -169,14 +169,13 @@
     const messages = getAllMessages();
     if (messages.length === 0) return -1;
 
-    // 首先查找视口中间的消息
-    const viewportCenter = window.innerHeight / 2;
+    // 查找最靠近视口顶部的可见消息
     let closestIndex = 0;
     let closestDistance = Infinity;
 
     for (let i = 0; i < messages.length; i++) {
-      const messageCenter = (messages[i].top + messages[i].bottom) / 2;
-      const distance = Math.abs(messageCenter - viewportCenter);
+      // 使用消息顶部到视口顶部的距离
+      const distance = Math.abs(messages[i].top);
       if (distance < closestDistance) {
         closestDistance = distance;
         closestIndex = i;
