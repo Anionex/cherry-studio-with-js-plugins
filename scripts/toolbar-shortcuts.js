@@ -72,7 +72,7 @@
         return;
       }
       
-      if (clickButtonBySvgClass('.lucide.lucide-square-terminal')) {
+      if (clickButtonBySvgClass('.lucide.lucide-hammer')) {
         console.log('已触发终端按钮点击 (Ctrl+Alt+M)');
       }
     }
@@ -112,42 +112,42 @@
     }
   });
 
-  // // 4. 思考按钮快捷键 (Ctrl+Alt+T)
-  // document.addEventListener('keydown', function(event) {
-  //   if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 't' && event.altKey && !event.shiftKey) {
-  //     event.preventDefault();
+  // 4. 思考按钮快捷键 (Ctrl+Alt+T)
+  document.addEventListener('keydown', function(event) {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 't' && event.altKey && !event.shiftKey) {
+      event.preventDefault();
       
-  //     // 检查是否在聊天页面
-  //     if (!isChatPage()) {
-  //       console.log('非聊天页面，思考快捷键未激活');
-  //       return;
-  //     }
+      // 检查是否在聊天页面
+      if (!isChatPage()) {
+        console.log('非聊天页面，思考快捷键未激活');
+        return;
+      }
       
-  //     // 思考按钮使用的是非lucide类的SVG，需要特殊处理
-  //     const inputbarContainer = document.querySelector('.inputbar-container');
-  //     if (inputbarContainer) {
-  //       // 在按钮文本中查找包含"思考"的元素，或者尝试通过SVG路径特征查找
-  //       const allButtons = inputbarContainer.querySelectorAll('button');
-  //       let thinkingButton = null;
+      // 思考按钮使用的是非lucide类的SVG，需要特殊处理
+      const inputbarContainer = document.querySelector('.inputbar-container');
+      if (inputbarContainer) {
+        // 在按钮文本中查找包含"思考"的元素，或者尝试通过SVG路径特征查找
+        const allButtons = inputbarContainer.querySelectorAll('button');
+        let thinkingButton = null;
         
-  //       // 遍历所有按钮查找思考按钮
-  //       for (const button of allButtons) {
-  //         const svg = button.querySelector('svg[viewBox="0 0 24 24"]');
-  //         if (svg && svg.querySelector('path[d="M12 2C9.76 2 7.78 3.05 6.5 4.68l1.43 1.43C8.84 4.84 10.32 4 12 4a5 5 0 0 1 5 5c0 1.68-.84 3.16-2.11 4.06l1.42 1.44C17.94 13.21 19 11.24 19 9a7 7 0 0 0-7-7M3.28 4L2 5.27L5.04 8.3C5 8.53 5 8.76 5 9c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h5.73l4 4L20 20.72zm3.95 6.5l5.5 5.5H10v-2.42a5 5 0 0 1-2.77-3.08M9 20v1a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1z"]')) {
-  //           thinkingButton = button;
-  //           break;
-  //         }
-  //       }
+        // 遍历所有按钮查找思考按钮
+        for (const button of allButtons) {
+          const svg = button.querySelector('svg[viewBox="0 0 24 24"]');
+          if (svg && svg.querySelector('path[d="M12 2C9.76 2 7.78 3.05 6.5 4.68l1.43 1.43C8.84 4.84 10.32 4 12 4a5 5 0 0 1 5 5c0 1.68-.84 3.16-2.11 4.06l1.42 1.44C17.94 13.21 19 11.24 19 9a7 7 0 0 0-7-7M3.28 4L2 5.27L5.04 8.3C5 8.53 5 8.76 5 9c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h5.73l4 4L20 20.72zm3.95 6.5l5.5 5.5H10v-2.42a5 5 0 0 1-2.77-3.08M9 20v1a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1z"]')) {
+            thinkingButton = button;
+            break;
+          }
+        }
         
-  //       if (thinkingButton) {
-  //         thinkingButton.click();
-  //         console.log('已触发思考按钮点击 (Ctrl+Alt+T)');
-  //       } else {
-  //         console.log('未找到思考按钮');
-  //       }
-  //     }
-  //   }
-  // });
+        if (thinkingButton) {
+          thinkingButton.click();
+          console.log('已触发思考按钮点击 (Ctrl+Alt+T)');
+        } else {
+          console.log('未找到思考按钮');
+        }
+      }
+    }
+  });
 
   // 5. 网络搜索按钮快捷键 (Ctrl+Alt+W)
   document.addEventListener('keydown', function(event) {
