@@ -90,8 +90,6 @@ scripts_folder: ./scripts
 ## 注意事项
 
 - 确保配置文件 `config.yaml` 中的路径正确
-- 如修改脚本后需要重新生成可执行文件
-- 本工具仅适用于 Cherry Studio 应用程序
 
 ## 许可证
 
