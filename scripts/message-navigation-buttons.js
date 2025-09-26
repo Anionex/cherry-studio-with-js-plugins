@@ -1,5 +1,25 @@
 // 消息导航按钮
 (function() {
+  // 导航按钮配置常量
+  const NAVIGATION_CONFIG = {
+    // 容器位置
+    TOP_POSITION: '100px',
+    RIGHT_POSITION: '20px',
+    GAP: '5px',
+    Z_INDEX: 1000,
+    
+    // 按钮样式
+    BUTTON_SIZE: '28px',
+    BUTTON_RADIUS: '6px',
+    BUTTON_BG_COLOR: '#f0f0f0',
+    BUTTON_HOVER_COLOR: '#e0e0e0',
+    BUTTON_BORDER: '1px solid #ddd',
+    
+    // 图标样式
+    ICON_SIZE: '14px',
+    ICON_STROKE_WIDTH: '2'
+  };
+
   let isInitialized = false;
   let chatPageObserver = null;
   // 检查是否为聊天页面
@@ -44,12 +64,12 @@
     navigationContainer.id = 'message-navigation-container';
     navigationContainer.style.cssText = `
       position: fixed;
-      top: 70px;
-      right: 20px;
+      top: ${NAVIGATION_CONFIG.TOP_POSITION};
+      right: ${NAVIGATION_CONFIG.RIGHT_POSITION};
       display: flex;
       flex-direction: row;
-      gap: 5px;
-      z-index: 1000;
+      gap: ${NAVIGATION_CONFIG.GAP};
+      z-index: ${NAVIGATION_CONFIG.Z_INDEX};
     `;
 
     // 添加按钮
@@ -65,11 +85,11 @@
       button.id = btn.id;
       button.title = btn.title;
       button.style.cssText = `
-        width: 36px;
-        height: 36px;
-        border-radius: 6px;
-        background-color: #f0f0f0;
-        border: 1px solid #ddd;
+        width: ${NAVIGATION_CONFIG.BUTTON_SIZE};
+        height: ${NAVIGATION_CONFIG.BUTTON_SIZE};
+        border-radius: ${NAVIGATION_CONFIG.BUTTON_RADIUS};
+        background-color: ${NAVIGATION_CONFIG.BUTTON_BG_COLOR};
+        border: ${NAVIGATION_CONFIG.BUTTON_BORDER};
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -81,12 +101,12 @@
       // 创建SVG图标元素（使用已加载的Lucide库）
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-      svg.setAttribute('width', '18');
-      svg.setAttribute('height', '18');
+      svg.setAttribute('width', NAVIGATION_CONFIG.ICON_SIZE);
+      svg.setAttribute('height', NAVIGATION_CONFIG.ICON_SIZE);
       svg.setAttribute('viewBox', '0 0 24 24');
       svg.setAttribute('fill', 'none');
       svg.setAttribute('stroke', 'currentColor');
-      svg.setAttribute('stroke-width', '2');
+      svg.setAttribute('stroke-width', NAVIGATION_CONFIG.ICON_STROKE_WIDTH);
       svg.setAttribute('stroke-linecap', 'round');
       svg.setAttribute('stroke-linejoin', 'round');
       svg.classList.add('lucide', `lucide-${btn.icon}`);
@@ -110,10 +130,10 @@
       button.appendChild(svg);
       
       button.addEventListener('mouseover', function() {
-        this.style.backgroundColor = '#e0e0e0';
+        this.style.backgroundColor = NAVIGATION_CONFIG.BUTTON_HOVER_COLOR;
       });
       button.addEventListener('mouseout', function() {
-        this.style.backgroundColor = '#f0f0f0';
+        this.style.backgroundColor = NAVIGATION_CONFIG.BUTTON_BG_COLOR;
       });
       button.addEventListener('click', btn.action);
       navigationContainer.appendChild(button);
