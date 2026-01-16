@@ -78,9 +78,11 @@ class ElectronRemoteDebugger(object):
 
     def requests_get(self, url, tries=5, delay=1):
         last_exception = Exception("failed to request after %d tries."%tries)
+        # 禁用代理，因为我们连接的是本地调试端口
+        proxies = {"http": None, "https": None}
         for _ in range(tries):
             try:
-                return requests.get(url, timeout=5)
+                return requests.get(url, timeout=5, proxies=proxies)
             except requests.exceptions.ConnectionError as ce:
                 last_exception = ce
             except Exception as e:
@@ -245,7 +247,7 @@ class ElectronRemoteDebugger(object):
         logger.info(f"等待调试端口 {port} 可用...")
         connected = False
         
-        for i in range(10):  # 增加等待时间到60秒
+        for i in range(10):  # 等待最多60秒
             try:
                 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 sock.settimeout(1)
@@ -255,7 +257,8 @@ class ElectronRemoteDebugger(object):
                 if result == 0:
                     # 端口开放，但还需要检查是否可以获取调试信息
                     try:
-                        response = requests.get(f"http://localhost:{port}/json/version", timeout=2)
+                        # 系统有 Clash 代理会拦截本地连接
+                        response = requests.get(f"http://localhost:{port}/json/version", timeout=2, proxies={"http": None, "https": None})
                         if response.status_code == 200:
                             connected = True
                             logger.info(f"调试端口 {port} 已可用")
