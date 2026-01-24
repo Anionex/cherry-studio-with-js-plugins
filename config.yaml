@@ -1,2 +1,11 @@
-app_path: C:\Users\10051\AppData\Local\Programs\Cherry Studio\Cherry Studio.exe
+# 支持多平台的Cherry Studio路径配置
+# 系统会自动检测当前平台并选择对应的路径
+app_paths:
+  windows: "C:\\Users\\%USERNAME%\\AppData\\Local\\Programs\\Cherry Studio\\Cherry Studio.exe"
+  macos: "/Applications/Cherry Studio.app/Contents/MacOS/Cherry Studio"
+  linux: "/usr/bin/cherry-studio"  # 如果需要Linux支持
+
 scripts_folder: ./scripts
+
+# 自动检测路径，如果找不到可以手动指定
+# auto_detect: true
